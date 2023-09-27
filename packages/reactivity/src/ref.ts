@@ -1,3 +1,4 @@
+import { hasChanged } from '@lin-vue/shared';
 function toRaw(observed: any): any {
     return (observed && toRaw(observed["__v_raw"])) || observed
 }
@@ -28,7 +29,7 @@ export class RefImpl<T> {
         this._value = __v_isShallow ? rawValue : toReactive(rawValue)
     }
     get value(){
-         // 收集依赖
+        // 收集依赖
         triggerRefValue(this);
         return this._value
     }
